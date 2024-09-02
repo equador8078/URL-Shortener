@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        h1{
+            font-size: 12px;
+        }
+        body{
+            font-size: 10px;
+            font-family:Verdana, Geneva, Tahoma, sans-serif;
+        }
+        input{
+            font-size: 5px;
+        }
+        button{
+            font-size: 5px;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <h1>Log-In Form</h1>
+    <div>
+        <form method="POST" action="/user/login">
+            <label>Email:</label>
+            <input type="text" required name="email">
+            <label>Password:</label>
+            <input type="text" required name="password">
+            <button type="submit">Login</button>
+
+            <% if (locals.msg) { %>
+            <script>alert('<%= msg %>')</script>
+            <% } %>
+        </form>
+    </div>
+</body>
+</html>

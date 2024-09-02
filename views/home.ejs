@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <style>
+        .infobar{
+            text-align: left;
+        }
+        .col-wide{
+            width: 150px;
+        }
+        body{
+            font-size: 10px;
+        }
+        input{
+            font-size: 5px;
+        }
+        button{
+            font-size: 5px;
+        }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+</head>
+<body>
+    <h2>URL Shortner</h2>
+    <% if (locals.Id) { %>
+        <p>Generated URL is : http://localhost:8001/url/<%= Id %> </p>
+        <% } %>
+    <div>
+        <form method="POST" action="/url">
+            <label>Enter Url:</label>
+            <input type="text"  name="url"  placeholder="http://localhost:8001/example.com">
+            <button type="submit">Generate</button>
+        </form>
+    </div>
+    <div>
+
+        <% if (locals.urls) { %>
+            <table>
+                
+                <th>Sr No.</th>
+                <th class="infobar" class="col-wide">RedirectURL</th>
+                <th class="infobar" class="col-wide">ShortURL</th>
+                <th>Clicks</th>
+            </thead>
+            <tbody>
+                <% urls.forEach((url ,index)=> { %>
+                    <tr>
+                        <td><%= index+1 %></td>
+                        <td class="col-wide"><%= url.redirectUrl %></td>
+                        <td class="col-wide"><p>http://localhost:8001/url/<%=url.shortUrl %></p></td>
+                        <td><%= url.visitHistory.length %></td>
+                    </tr>
+                        <% }) %>
+                    </tbody>
+                </tr>
+                </table>
+                
+        <% } %>
+    </div>
+    <div>
+        <form method="GET" action="/url/delete">
+        <p>Enter Redirect URL to be deleted:</p>
+        <input type="text" placeholder="http://google.com" name="deleteUrl">
+        <button type="submit">Delete URL</button>
+    </form>
+    <% if (locals.msg) { %>
+    <%= msg %>
+    <% } %>
+    </div>
+</body>
+</html>
